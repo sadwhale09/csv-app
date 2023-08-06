@@ -15,3 +15,4 @@
 - [ ] Add an option to change the field delimiter
 - [ ] Prevent removing the only row
 - [ ] Make the dark mode as default 💀
+- [ ] Add importing
