@@ -1,4 +1,5 @@
 # Test Creator
+Ask Me and Rate is a learning app for Android which is currently in open beta tests phase available at https://play.google.com/store/apps/details?id=com.aplicamo.android.askme
 
 ## Usage:
 - Write a pair of question-answer in first textarea boxes
