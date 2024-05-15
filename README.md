@@ -18,6 +18,6 @@ This repo has a web app to facilitate own test sets creation.
 ## TODO:
 - [ ] Add a field to change a default test.csv name before download
 - [ ] Add an option to change the field delimiter
-- [ ] Prevent removing the only row
-- [ ] Make the dark mode as default 💀
-- [ ] Add importing
+- [ ] Prevent removing the only remaining row
+- [ ] Make the dark mode 💀
+- [ ] Add option to import users' own csv sets
