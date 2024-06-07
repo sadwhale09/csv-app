@@ -45,12 +45,23 @@ function parseData() {
 
         var cols = rows[i].querySelectorAll('td textarea');
 
+        var strLengthLimit = 25
         var csvrow = [];
         for (var j = 0; j < cols.length; j++) {
 
             text = cols[j].value.trim()
 
-            csvrow.push(text);
+            if (text.length > strLengthLimit) {
+                alert(`The string at row ${i} is too long!`)
+                return
+            } else if (text.length == 0) {
+                alert(`Cells cannot be empty!`)
+                return
+            }
+            else {
+                csvrow.push(text);
+            }
+
         }
         csv_data.push(csvrow.join("|"));
     }

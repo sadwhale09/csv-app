@@ -25,8 +25,9 @@ This repo has a web app to facilitate own test sets creation.
 
 ### Perform these actions when creating a record or before writing to file
 - [x] Trim spaces
-- [ ] Save only after trimming spaces
-- [ ] Max 25 chars per cell
+- [x] Save only after trimming spaces
+- [x] Max 25 chars per cell
 - [ ] Max 1000 records
 - [ ] Check for doubled records
 - [ ] Check if the're at least 2 different answers
+
