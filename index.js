@@ -41,6 +41,8 @@ function removeRow() {
     for (let button of buttons) {
         button.addEventListener("click", buttonPressed);
     }
+
+    count -= 1;
 }
 
 function parseData() {
