@@ -13,18 +13,18 @@ function init() {
 }
 
 const minRecords = 2;
-const maxRecords = 5;
+const maxRecords = 5;  // Default 1000
 let count = 0;
 function addRow() {
 
     const table = document.getElementById("table");
 
-    let id = count+1;
+    let rowId = count+1;
 
     if (count < maxRecords) {
         table.insertAdjacentHTML("beforeend", `
         <tr id="row` + count + `">
-        <td>` + id + `</td>
+        <td>` + rowId + `</td>
         <td class="content">
         <textarea class="input" style="resize:none; text-align:center; text-valign:center"></textarea>
         </td>
