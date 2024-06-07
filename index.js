@@ -1,14 +1,30 @@
-document.body.onload = addRow;
+document.body.onload = init;
 
-let maxRecords = 1000;
+function updateCounter(count) {
+    var p = document.getElementById("counter");
+    p.textContent = `Records: ${count}`;
+}
+
+function init() {
+    addRow();
+    addRow();
+
+    updateCounter(count);
+}
+
+const minRecords = 2;
+const maxRecords = 5;
 let count = 0;
 function addRow() {
 
     const table = document.getElementById("table");
 
+    let id = count+1;
+
     if (count < maxRecords) {
         table.insertAdjacentHTML("beforeend", `
         <tr id="row` + count + `">
+        <td>` + id + `</td>
         <td class="content">
         <textarea class="input" style="resize:none; text-align:center; text-valign:center"></textarea>
         </td>
@@ -26,23 +42,29 @@ function addRow() {
     }
 
     count += 1;
+    updateCounter(count);
 }
 
-// For now it remove rows from start
-// TODO: Make the button remove a row it belongs to
+// TODO: Can still remove last record. Problem with indexing I think
 function removeRow() {
-    const buttons = document.getElementsByTagName("button");
+    if (count > minRecords) {
+        const buttons = document.getElementsByTagName("button");
 
-    const buttonPressed = e => { 
-        const child = document.getElementById(e.target.id);
-        child?.parentElement.parentElement.parentElement?.remove();
+        const buttonPressed = e => { 
+            const child = document.getElementById(e.target.id);
+            child?.parentElement.parentElement.parentElement?.remove();
+        }
+
+        for (let button of buttons) {
+            button.addEventListener("click", buttonPressed);
+        }
+
+        count -= 1;
+        updateCounter(count);
+    } else {
+        alert(`There must be at least ${minRecords} records!`);
+        return;
     }
-
-    for (let button of buttons) {
-        button.addEventListener("click", buttonPressed);
-    }
-
-    count -= 1;
 }
 
 function parseData() {
