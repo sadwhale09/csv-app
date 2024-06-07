@@ -1,11 +1,13 @@
 document.body.onload = addRow;
 
+let maxRecords = 1000;
 let count = 0;
 function addRow() {
 
     const table = document.getElementById("table");
 
-    table.insertAdjacentHTML("beforeend", `
+    if (count < maxRecords) {
+        table.insertAdjacentHTML("beforeend", `
         <tr id="row` + count + `">
         <td class="content">
         <textarea class="input" style="resize:none; text-align:center; text-valign:center"></textarea>
@@ -17,7 +19,11 @@ function addRow() {
         <button id="rmBtn` + count + `" type="button" title="Remove row." onClick="removeRow()">X</button>
         </td>
         </tr>
-    `);
+        `);
+    } else {
+        alert(`Max records is ${maxRecords}!`);
+        return;
+    }
 
     count += 1;
 }

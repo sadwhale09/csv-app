@@ -27,7 +27,7 @@ This repo has a web app to facilitate own test sets creation.
 - [x] Trim spaces
 - [x] Save only after trimming spaces
 - [x] Max 25 chars per cell
-- [ ] Max 1000 records
+- [x] Max 1000 records (validate at `addRow()`)
 - [ ] Check for doubled records
 - [ ] Check if the're at least 2 different answers
 
