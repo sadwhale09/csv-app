@@ -48,7 +48,9 @@ function parseData() {
         var csvrow = [];
         for (var j = 0; j < cols.length; j++) {
 
-            csvrow.push(cols[j].value);
+            text = cols[j].value.trim()
+
+            csvrow.push(text);
         }
         csv_data.push(csvrow.join("|"));
     }
