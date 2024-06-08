@@ -53,25 +53,30 @@ function addRow() {
 // TODO: Can still remove last record. Problem with indexing I think.
 function removeRow() {
 
-    // Get all remove buttons
-    var removeButtons = document.querySelectorAll(".rmBtn");
+    if (count > minRecords) {
+        // Get all remove buttons
+        var removeButtons = document.querySelectorAll(".rmBtn");
 
-    // Add click event listener to each remove button
-    removeButtons.forEach(function(button) {
-        //
-        // THIS CODE DOESN'T WORK ON THE FIRST CLICK!!!
-        //
-        button.addEventListener("click", function() {
-            // Get the parent div of the clicked button
-            var parentDiv = this.parentNode.parentNode.parentNode;
+        // Add click event listener to each remove button
+        removeButtons.forEach(function(button) {
+            //
+            // THIS CODE DOESN'T WORK ON THE FIRST CLICK!!!
+            //
+            button.addEventListener("click", function() {
+                // Get the parent div of the clicked button
+                var parentDiv = this.parentNode.parentNode.parentNode;
 
-            // Remove the parent div from the DOM
-            parentDiv.remove();
+                // Remove the parent div from the DOM
+                parentDiv.remove();
 
-            count -= 1;
-            updateCounter(count);
+                count -= 1;
+                updateCounter(count);
+            });
         });
-    });
+    } else {
+        alert(`There must be at least ${minRecords} records!`);
+        return;
+    }
 
 
 
