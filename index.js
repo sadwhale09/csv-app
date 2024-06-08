@@ -8,15 +8,15 @@ function updateCounter(count) {
 function init() {
     addRow();
     addRow();
-
-    updateCounter(count);
+    addRow();
+    addRow();
+    addRow();
 }
 
 const minRecords = 2;
 const maxRecords = 1000;  // Default 1000
 let count = 0;
 function addRow() {
-
     const table = document.getElementById("table");
 
     let rowId = count+1;
@@ -24,16 +24,21 @@ function addRow() {
     if (count < maxRecords) {
         table.insertAdjacentHTML("beforeend", `
         <tr id="row` + count + `">
+
         <td>` + rowId + `</td>
+
         <td class="content">
         <textarea class="input" style="resize:none; text-align:center; text-valign:center"></textarea>
         </td>
+
         <td class="content">
         <textarea class="input" style="resize:none; text-align:center; text-valign:center"></textarea>
         </td>
+
         <td>
-        <button id="rmBtn` + count + `" type="button" title="Remove row." onClick="removeRow()">X</button>
+        <button class="rmBtn" id="rmBtn` + count + `" type="button" title="Remove row." onClick="removeRow()">X</button>
         </td>
+
         </tr>
         `);
     } else {
@@ -45,26 +50,54 @@ function addRow() {
     updateCounter(count);
 }
 
-// TODO: Can still remove last record. Problem with indexing I think
+// TODO: Can still remove last record. Problem with indexing I think.
 function removeRow() {
-    if (count > minRecords) {
-        const buttons = document.getElementsByTagName("button");
 
-        const buttonPressed = e => { 
-            const child = document.getElementById(e.target.id);
-            child?.parentElement.parentElement.parentElement?.remove();
-        }
+    // Get all remove buttons
+    var removeButtons = document.querySelectorAll(".rmBtn");
 
-        for (let button of buttons) {
-            button.addEventListener("click", buttonPressed);
-        }
+    // Add click event listener to each remove button
+    removeButtons.forEach(function(button) {
+        //
+        // THIS CODE DOESN'T WORK ON THE FIRST CLICK!!!
+        //
+        button.addEventListener("click", function() {
+            // Get the parent div of the clicked button
+            var parentDiv = this.parentNode.parentNode.parentNode;
 
-        count -= 1;
-        updateCounter(count);
-    } else {
-        alert(`There must be at least ${minRecords} records!`);
-        return;
-    }
+            // Remove the parent div from the DOM
+            parentDiv.remove();
+
+            count -= 1;
+            updateCounter(count);
+        });
+    });
+
+
+
+    // if (count > minRecords) {
+    //
+    //     // Get all remove buttons
+    //     var removeButtons = document.querySelectorAll('.rmBtn');
+    //
+    //     // Add click event listener to each remove button
+    //     removeButtons.forEach(function(button) {
+    //         button.addEventListener('click', function() {
+    //             // Get the parent div of the clicked button
+    //             var parentDiv = this.parentNode.parentNode.parentNode;
+    //
+    //             // Remove the parent div from the DOM
+    //             parentDiv.remove();
+    //         });
+    //     });
+    //
+    //     count -= 1;
+    //     updateCounter(count);
+    // } else {
+    //     alert(`There must be at least ${minRecords} records!`);
+    //     return;
+    // }
+
 }
 
 function parseData() {

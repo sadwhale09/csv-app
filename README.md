@@ -18,12 +18,14 @@ This repo has a web app to facilitate own test sets creation.
 ## TODO:
 - [ ] Add a field to change a default test.csv name before download
 - [ ] Add an option to change the field delimiter
-- [ ] Prevent removing the only remaining row
+- [x] Prevent removing the only remaining row (2 remaining rows)
 - [ ] Make the dark mode 💀
 - [ ] Add option to import users' own csv sets
+- [ ] Display vaidation warnings in the div inseted of alert
+- [ ] Fix indexing and counting of records
 
 
-### Perform these actions when creating a record or before writing to file
+### Validation
 - [x] Trim spaces
 - [x] Save only after trimming spaces
 - [x] Max 25 chars per cell
