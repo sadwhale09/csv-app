@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<body>
-		<script src="index.js"></script>
-
 		<center>
             <p id="counter">Records:  </p>
 			<h1>Test Creator</h1>
-			<button type="button" onclick="addRow()">Add Question</button>
+			<!-- <button type="button" onclick="addRow()">Add Question</button> -->
+			<button type="button" onclick="addRow(); removeRow()">Add Question</button>
 			<br>
 			<table id="table">
 				<tr>
@@ -18,6 +17,9 @@
 			<br>
 			<button type="button" onclick="parseData()">Export to CSV</button>
 		</center>
+        
+		<script src="index.js"></script>
+
 	</body>
 </html>
 

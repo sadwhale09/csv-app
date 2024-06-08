@@ -8,15 +8,16 @@ function updateCounter(count) {
 function init() {
     addRow();
     addRow();
+    addRow();
+    addRow();
+    addRow();
 }
 
 const minRecords = 2;
-const maxRecords = 5;  // Default 1000
+const maxRecords = 1000;  // Default 1000
 // TODO: Needs different variables for ID and for records count
 let count = 0;
 function addRow() {
-    updateCounter(count);
-
     const table = document.getElementById("table");
 
     let rowId = count+1;
@@ -24,16 +25,21 @@ function addRow() {
     if (count < maxRecords) {
         table.insertAdjacentHTML("beforeend", `
         <tr id="row` + count + `">
+
         <td>` + rowId + `</td>
+
         <td class="content">
         <textarea class="input" style="resize:none; text-align:center; text-valign:center"></textarea>
         </td>
+
         <td class="content">
         <textarea class="input" style="resize:none; text-align:center; text-valign:center"></textarea>
         </td>
+
         <td>
         <button class="rmBtn" id="rmBtn` + count + `" type="button" title="Remove row." onClick="removeRow()">X</button>
         </td>
+
         </tr>
         `);
     } else {
@@ -46,30 +52,53 @@ function addRow() {
 }
 
 // TODO: Can still remove last record. Problem with indexing I think.
-// Pressing 'X' (rmBrn) doesn't remove the record but decreases count
 function removeRow() {
-    if (count > minRecords) {
 
-        // Get all remove buttons
-        var removeButtons = document.querySelectorAll('.rmBtn');
+    // Get all remove buttons
+    var removeButtons = document.querySelectorAll(".rmBtn");
 
-        // Add click event listener to each remove button
-        removeButtons.forEach(function(button) {
-            button.addEventListener('click', function() {
-                // Get the parent div of the clicked button
-                var parentDiv = this.parentNode.parentNode.parentNode;
+    // Add click event listener to each remove button
+    removeButtons.forEach(function(button) {
+        //
+        // THIS CODE DOESN'T WORK ON THE FIRST CLICK!!!
+        //
+        button.addEventListener("click", function() {
+            // Get the parent div of the clicked button
+            var parentDiv = this.parentNode.parentNode.parentNode;
 
-                // Remove the parent div from the DOM
-                parentDiv.remove();
-            });
+            // Remove the parent div from the DOM
+            parentDiv.remove();
+
+            count -= 1;
+            updateCounter(count);
         });
+    });
 
-        count -= 1;
-        updateCounter(count);
-    } else {
-        alert(`There must be at least ${minRecords} records!`);
-        return;
-    }
+
+
+    // if (count > minRecords) {
+    //
+    //     // Get all remove buttons
+    //     var removeButtons = document.querySelectorAll('.rmBtn');
+    //
+    //     // Add click event listener to each remove button
+    //     removeButtons.forEach(function(button) {
+    //         button.addEventListener('click', function() {
+    //             // Get the parent div of the clicked button
+    //             var parentDiv = this.parentNode.parentNode.parentNode;
+    //
+    //             // Remove the parent div from the DOM
+    //             parentDiv.remove();
+    //         });
+    //     });
+    //
+    //     count -= 1;
+    //     updateCounter(count);
+    // } else {
+    //     alert(`There must be at least ${minRecords} records!`);
+    //     return;
+    // }
+
 }
 
 function parseData() {
