@@ -13,7 +13,7 @@ function init() {
 }
 
 const minRecords = 2;
-const maxRecords = 5;  // Default 1000
+const maxRecords = 1000;  // Default 1000
 let count = 0;
 function addRow() {
 
