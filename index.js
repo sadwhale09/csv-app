@@ -8,14 +8,14 @@ function updateCounter(count) {
 function init() {
     addRow();
     addRow();
-
-    updateCounter(count);
 }
 
 const minRecords = 2;
 const maxRecords = 5;  // Default 1000
+// TODO: Needs different variables for ID and for records count
 let count = 0;
 function addRow() {
+    updateCounter(count);
 
     const table = document.getElementById("table");
 
@@ -32,7 +32,7 @@ function addRow() {
         <textarea class="input" style="resize:none; text-align:center; text-valign:center"></textarea>
         </td>
         <td>
-        <button id="rmBtn` + count + `" type="button" title="Remove row." onClick="removeRow()">X</button>
+        <button class="rmBtn" id="rmBtn` + count + `" type="button" title="Remove row." onClick="removeRow()">X</button>
         </td>
         </tr>
         `);
@@ -45,19 +45,24 @@ function addRow() {
     updateCounter(count);
 }
 
-// TODO: Can still remove last record. Problem with indexing I think
+// TODO: Can still remove last record. Problem with indexing I think.
+// Pressing 'X' (rmBrn) doesn't remove the record but decreases count
 function removeRow() {
     if (count > minRecords) {
-        const buttons = document.getElementsByTagName("button");
 
-        const buttonPressed = e => { 
-            const child = document.getElementById(e.target.id);
-            child?.parentElement.parentElement.parentElement?.remove();
-        }
+        // Get all remove buttons
+        var removeButtons = document.querySelectorAll('.rmBtn');
 
-        for (let button of buttons) {
-            button.addEventListener("click", buttonPressed);
-        }
+        // Add click event listener to each remove button
+        removeButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                // Get the parent div of the clicked button
+                var parentDiv = this.parentNode.parentNode.parentNode;
+
+                // Remove the parent div from the DOM
+                parentDiv.remove();
+            });
+        });
 
         count -= 1;
         updateCounter(count);
